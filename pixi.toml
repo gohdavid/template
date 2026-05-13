@@ -1,0 +1,23 @@
+[workspace]
+name = "project-template"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[system-requirements]
+linux = "4.18"
+
+[dependencies]
+python = ">=3.10,<3.14"
+uv = ">=0.5"
+pip = ">=24"
+
+[tasks]
+sync = "uv sync --extra dev"
+sync-ml = "uv sync --extra dev --extra ml"
+train = "uv run project-template-train"
+sample = "uv run project-template-sample"
+eval = "uv run project-template-eval"
+pipeline = "uv run project-template-pipeline"
+test = "uv run --extra dev pytest -q"
+lint = "uv run --extra dev ruff check project_template tests"
+check-env = "uv run python -c 'import sys, hydra, omegaconf; print(sys.executable); print(hydra.__version__); print(omegaconf.__version__)'"

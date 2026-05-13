@@ -1,0 +1,6 @@
+name: default
+input_dim: ${dataset.input_dim}
+hidden_dim: 32
+num_layers: 2
+activation: gelu
+output_dim: 1

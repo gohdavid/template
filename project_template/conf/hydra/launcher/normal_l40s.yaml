@@ -1,0 +1,30 @@
+# @package _global_
+slurm:
+  gpu_type: l40s
+  num_gpus: 1
+
+hydra:
+  launcher:
+    _target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.SlurmLauncher
+
+    job_name: ${name}
+    timeout_min: 360
+    partition: mit_normal_gpu
+    account: mit_amf_advanced_gpu
+    qos: mit_amf_advanced_gpu
+
+    cpus_per_task: 4
+    mem_gb: 64
+
+    gres: gpu:${slurm.gpu_type}:${slurm.num_gpus}
+
+    nodes: 1
+    tasks_per_node: 1
+
+    additional_parameters:
+      output: ${hydra.sweep.dir}/slurm-%j.out
+
+    setup:
+      - cd ${hydra.runtime.cwd}
+
+    submitit_folder: ${hydra.sweep.dir}/.submitit/%j

@@ -1,0 +1,4 @@
+name: default
+target: 1.0
+input_dim: 4
+description: "Minimal deterministic dataset config for smoke tests."

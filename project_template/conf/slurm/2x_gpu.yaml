@@ -1,0 +1,6 @@
+# @package _global_
+slurm:
+  num_gpus: 2
+
+train:
+  num_devices: 2

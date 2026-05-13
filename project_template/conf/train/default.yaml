@@ -1,0 +1,6 @@
+num_steps: 1000
+batch_size: 128
+log_every: 100
+state_every: 250
+resume: true
+num_devices: 1

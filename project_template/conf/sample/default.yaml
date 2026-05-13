@@ -1,0 +1,5 @@
+name: default
+n_samples: 128
+loc: 0.0
+scale: 1.0
+on_existing: skip

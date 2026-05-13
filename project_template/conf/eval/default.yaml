@@ -1,0 +1,4 @@
+name: default
+n_bootstrap: 32
+metric: default_score
+on_existing: skip

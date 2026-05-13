@@ -1,0 +1,12 @@
+.venv/
+.pixi/
+.cache/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.egg-info/
+outputs/
+artifacts/
+multirun/
+logs/
+*.log

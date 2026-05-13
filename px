@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Repo-local Pixi launcher.
+#
+# Use this instead of plain `pixi` on shared filesystems. It keeps Pixi and uv
+# caches under this repository so large package artifacts do not spill into home
+# directories, while preserving the normal Pixi command surface:
+#
+#   ./px run train
+#   ./px run test
+#
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+mkdir -p "$ROOT/.cache/pixi" "$ROOT/.cache/uv"
+
+export PIXI_CACHE_DIR="${PIXI_CACHE_DIR:-$ROOT/.cache/pixi}"
+export RATTLER_CACHE_DIR="${RATTLER_CACHE_DIR:-$ROOT/.cache/pixi}"
+export UV_CACHE_DIR="${UV_CACHE_DIR:-$ROOT/.cache/uv}"
+
+exec pixi "$@"

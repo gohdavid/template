@@ -1,0 +1,23 @@
+defaults:
+  - pipeline: default
+  - optional slurm: null
+  - _self_
+
+name: pipeline
+seed: 0
+
+output:
+  root: artifacts
+  name: ${name}
+
+hash:
+  profile: pipeline
+  n_chars: 12
+  extra_exclude: []
+
+hydra:
+  run:
+    dir: outputs/${name}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: multirun/${name}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
